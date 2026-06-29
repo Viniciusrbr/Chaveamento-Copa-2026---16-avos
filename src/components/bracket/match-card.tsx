@@ -3,7 +3,7 @@
 import { ChevronRight } from "lucide-react";
 import type { Match } from "@/lib/espn/model";
 import { ROUND_LABEL } from "@/lib/espn/model";
-import { formatMatchDate } from "@/lib/format";
+import { formatMatchDate, formatMatchWeekday } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { MatchStatusBadge } from "./match-status";
 import { TeamRow } from "./team-row";
@@ -41,9 +41,20 @@ export function MatchCard({
           isFinal && "bg-primary/10",
         )}
       >
-        <span className="eyebrow text-[0.6rem] text-muted-foreground">
-          {isFinal ? "Grande Final" : formatMatchDate(match.date)}
-        </span>
+        {isFinal ? (
+          <span className="eyebrow text-[0.6rem] text-muted-foreground">
+            Grande Final
+          </span>
+        ) : (
+          <span className="flex min-w-0 flex-col">
+            <span className="eyebrow text-[0.6rem] text-muted-foreground">
+              {formatMatchDate(match.date)}
+            </span>
+            <span className="truncate text-[0.6rem] text-muted-foreground/60">
+              {formatMatchWeekday(match.date)}
+            </span>
+          </span>
+        )}
         <MatchStatusBadge status={match.status} />
       </div>
 

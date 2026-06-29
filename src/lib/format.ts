@@ -11,6 +11,11 @@ export function formatMatchDate(iso: string): string {
   return dayjs(iso).format("DD MMM · HH:mm");
 }
 
+export function formatMatchWeekday(iso: string): string {
+  const weekday = dayjs(iso).format("dddd").replace("-feira", "");
+  return weekday.charAt(0).toUpperCase() + weekday.slice(1);
+}
+
 export function formatMatchDateLong(iso: string): string {
   return dayjs(iso).format("dddd, DD [de] MMMM [de] YYYY [às] HH:mm");
 }

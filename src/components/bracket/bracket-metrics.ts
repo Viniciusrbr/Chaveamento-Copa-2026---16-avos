@@ -1,5 +1,5 @@
 export const BRACKET_METRICS = {
-  sideHeight: "68rem",
+  sideHeight: "72rem",
   headerHeight: "h-9",
   cardWidth: "w-48",
   elbowWidth: "w-9",

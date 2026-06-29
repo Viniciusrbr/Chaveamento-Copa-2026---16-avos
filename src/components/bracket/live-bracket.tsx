@@ -2,8 +2,10 @@
 
 import { useMemo, useState } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { useDragScroll } from "@/hooks/use-drag-scroll";
 import { useLiveBracket } from "@/hooks/use-live-bracket";
 import type { Bracket as BracketData, Match } from "@/lib/espn/model";
+import { cn } from "@/lib/utils";
 import { Bracket } from "./bracket";
 import { LiveStatusBar } from "./live-status-bar";
 import { MatchDetailDialog } from "./match-detail-dialog";
@@ -22,6 +24,8 @@ export function LiveBracket({ initialBracket }: LiveBracketProps) {
     [bracket],
   );
 
+  const { ref, isDragging, onPointerDown } = useDragScroll<HTMLDivElement>();
+
   const selectedMatch = useMemo(() => {
     if (!selected) return null;
     return (
@@ -39,7 +43,15 @@ export function LiveBracket({ initialBracket }: LiveBracketProps) {
       />
 
       <div className="min-w-0 overflow-hidden rounded-2xl border border-border/60 bg-card/30 pitch-grid">
-        <ScrollArea className="w-full">
+        <ScrollArea
+          viewportRef={ref}
+          onPointerDown={onPointerDown}
+          className={cn(
+            "w-full **:data-[slot=scroll-area-viewport]:cursor-grab",
+            isDragging &&
+              "**:data-[slot=scroll-area-viewport]:cursor-grabbing **:data-[slot=scroll-area-viewport]:select-none",
+          )}
+        >
           <div className="min-w-max py-6">
             <Bracket byRound={bracket.byRound} onSelect={setSelected} />
           </div>

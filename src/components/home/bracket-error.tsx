@@ -7,9 +7,13 @@ import { Button } from "@/components/ui/button";
 
 type BracketErrorProps = {
   message: string;
+  title?: string;
 };
 
-export function BracketError({ message }: BracketErrorProps) {
+export function BracketError({
+  message,
+  title = "Não foi possível carregar o chaveamento",
+}: BracketErrorProps) {
   const router = useRouter();
   const [isRetrying, setIsRetrying] = useState(false);
 
@@ -24,9 +28,7 @@ export function BracketError({ message }: BracketErrorProps) {
         <TriangleAlert className="size-6" />
       </span>
       <div className="space-y-1">
-        <h2 className="font-display text-lg font-semibold">
-          Não foi possível carregar o chaveamento
-        </h2>
+        <h2 className="font-display text-lg font-semibold">{title}</h2>
         <p className="text-sm text-muted-foreground">{message}</p>
       </div>
       <Button onClick={handleRetry} disabled={isRetrying}>

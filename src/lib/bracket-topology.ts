@@ -14,11 +14,16 @@ export type BracketColumn = {
 };
 
 /**
- * Fixed topology of the FIFA World Cup 2026 knockout stage. The pairings below
- * are taken from the official bracket (captured from ESPN's placeholder labels,
- * e.g. "Round of 32 3 Winner") and never change during the tournament; only the
- * teams filling each slot do. Matches are addressed by their position within a
- * round (1..N) where position = rank by ascending event id.
+ * Fixed topology of the FIFA World Cup 2026 knockout stage. The pairings never
+ * change during the tournament; only the teams filling each slot do. Matches
+ * are addressed by their position within a round (1..N) where position = rank
+ * by ascending event id.
+ *
+ * The order arrays were derived from ESPN's real bracket linkage, NOT from the
+ * placeholder text. ESPN labels feeders by local match index (matchNumber - 72
+ * for the round of 32), and that index does NOT follow ascending event id, so
+ * each label index is translated back to its event-id position before being
+ * paired here. Adjacent positions feed the same next-round match.
  *
  * Layout is a classic two-sided bracket converging on a centered final:
  *   left  R32(8) → R16(4) → QF(2) → SF(1)
@@ -26,7 +31,7 @@ export type BracketColumn = {
  *   right R32(8) ← R16(4) ← QF(2) ← SF(1)
  */
 export const LEFT_COLUMNS: BracketColumn[] = [
-  { round: "round-of-32", side: "left", order: [1, 3, 2, 5, 11, 12, 9, 10] },
+  { round: "round-of-32", side: "left", order: [1, 3, 4, 7, 11, 12, 9, 8] },
   { round: "round-of-16", side: "left", order: [1, 2, 5, 6] },
   { round: "quarterfinals", side: "left", order: [1, 2] },
   { round: "semifinals", side: "left", order: [1] },
@@ -36,7 +41,7 @@ export const RIGHT_COLUMNS: BracketColumn[] = [
   { round: "semifinals", side: "right", order: [2] },
   { round: "quarterfinals", side: "right", order: [3, 4] },
   { round: "round-of-16", side: "right", order: [3, 4, 7, 8] },
-  { round: "round-of-32", side: "right", order: [4, 6, 7, 8, 13, 15, 14, 16] },
+  { round: "round-of-32", side: "right", order: [2, 5, 6, 10, 13, 16, 15, 14] },
 ];
 
 export const CENTER_FINAL: BracketColumn = {

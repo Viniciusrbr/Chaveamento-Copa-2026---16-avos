@@ -1,5 +1,9 @@
 import dayjs from "dayjs";
-import type { Match } from "@/lib/espn/model";
+import utc from "dayjs/plugin/utc";
+import type { Match, TeamSlot } from "@/lib/espn/model";
+import { ROUND_LABEL } from "@/lib/espn/model";
+
+dayjs.extend(utc);
 
 export type CalendarDay = {
   key: string;
@@ -81,4 +85,41 @@ export function formatSlotLabel(label: string): string {
     if (translated !== label) return translated;
   }
   return label;
+}
+
+const MATCH_DURATION_MINUTES = 120;
+const CALENDAR_DETAILS =
+  "Copa do Mundo FIFA 2026 — acompanhe o chaveamento ao vivo.";
+
+function slotName(slot: TeamSlot): string {
+  return slot.kind === "team" ? slot.name : formatSlotLabel(slot.label);
+}
+
+function toGoogleDate(iso: string): string {
+  return dayjs(iso).utc().format("YYYYMMDD[T]HHmmss[Z]");
+}
+
+export function buildGoogleCalendarUrl(match: Match): string {
+  const title = `${slotName(match.home)} x ${slotName(match.away)} — ${
+    ROUND_LABEL[match.round]
+  }`;
+  const start = toGoogleDate(match.date);
+  const end = toGoogleDate(
+    dayjs(match.date).add(MATCH_DURATION_MINUTES, "minute").toISOString(),
+  );
+  const location = match.venue
+    ? [match.venue.name, match.venue.city, match.venue.country]
+        .filter(Boolean)
+        .join(", ")
+    : "";
+
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: title,
+    dates: `${start}/${end}`,
+    details: CALENDAR_DETAILS,
+  });
+  if (location) params.set("location", location);
+
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }

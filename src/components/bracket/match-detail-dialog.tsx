@@ -13,6 +13,7 @@ import { useMatchSummary } from "@/hooks/use-match-summary";
 import type { Match } from "@/lib/espn/model";
 import { ROUND_LABEL } from "@/lib/espn/model";
 import { formatMatchDateLong } from "@/lib/format";
+import { AddToCalendarButton } from "./add-to-calendar-button";
 import { LineupList } from "./lineup-list";
 import { MatchH2H } from "./match-h2h";
 import { MatchInfo } from "./match-info";
@@ -49,6 +50,9 @@ export function MatchDetailDialog({
                 {formatMatchDateLong(match.date)}
                 {match.venue ? ` · ${match.venue.name}` : ""}
               </DialogDescription>
+              {match.status.state !== "post" ? (
+                <AddToCalendarButton match={match} />
+              ) : null}
             </DialogHeader>
 
             <div className="max-h-[56vh] overflow-y-auto p-5">

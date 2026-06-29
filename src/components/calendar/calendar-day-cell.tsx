@@ -1,9 +1,9 @@
 "use client";
 
+import { LiveDot } from "@/components/bracket/live-dot";
 import type { CalendarDay } from "@/lib/calendar";
 import type { Match } from "@/lib/espn/model";
 import { cn } from "@/lib/utils";
-import { CalendarLiveDot } from "./calendar-live-dot";
 import { CalendarMatchChip } from "./calendar-match-chip";
 
 type CalendarDayCellProps = {
@@ -55,7 +55,7 @@ export function CalendarDayCell({
         </span>
         {hasMatches ? (
           <span className="flex items-center gap-1">
-            {hasLive ? <CalendarLiveDot /> : null}
+            {hasLive ? <LiveDot /> : null}
             <span className="rounded-full bg-primary/15 px-1.5 font-mono text-[0.6rem] font-semibold text-primary tabular-nums">
               {matches.length}
             </span>

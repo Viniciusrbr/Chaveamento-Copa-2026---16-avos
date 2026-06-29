@@ -3,6 +3,7 @@
 import { RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { LiveDot } from "./live-dot";
 
 type LiveStatusBarProps = {
   liveCount: number;
@@ -21,10 +22,7 @@ export function LiveStatusBar({
     <div className="flex flex-wrap items-center gap-3">
       {liveCount > 0 ? (
         <span className="inline-flex items-center gap-1.5 rounded-full bg-live/15 px-2.5 py-1 text-xs font-semibold text-live">
-          <span className="relative flex size-2">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-live opacity-75" />
-            <span className="relative inline-flex size-2 rounded-full bg-live" />
-          </span>
+          <LiveDot className="size-2" />
           {liveCount} ao vivo
         </span>
       ) : (

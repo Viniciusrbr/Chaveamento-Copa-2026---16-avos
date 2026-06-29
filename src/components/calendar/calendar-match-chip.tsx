@@ -1,11 +1,11 @@
 "use client";
 
+import { LiveDot } from "@/components/bracket/live-dot";
 import { Button } from "@/components/ui/button";
 import type { Match } from "@/lib/espn/model";
 import { ROUND_LABEL } from "@/lib/espn/model";
 import { formatMatchTime } from "@/lib/format";
 import { cn } from "@/lib/utils";
-import { CalendarLiveDot } from "./calendar-live-dot";
 import { CalendarTeamMini } from "./calendar-team-mini";
 
 type CalendarMatchChipProps = {
@@ -31,7 +31,7 @@ export function CalendarMatchChip({ match, onSelect }: CalendarMatchChipProps) {
         </span>
         {match.status.live ? (
           <span className="flex shrink-0 items-center gap-1 font-mono text-[0.6rem] font-semibold text-live tabular-nums">
-            <CalendarLiveDot className="size-1" />
+            <LiveDot className="size-1" />
             {match.status.clock?.trim() || "AO VIVO"}
           </span>
         ) : match.status.state === "post" ? (

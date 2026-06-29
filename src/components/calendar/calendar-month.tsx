@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { buildMonthMatrix, WEEKDAY_LABELS } from "@/lib/calendar";
 import type { Match } from "@/lib/espn/model";
 import { formatMonthTitle } from "@/lib/format";
@@ -20,7 +21,7 @@ export function CalendarMonth({
   today,
   onSelect,
 }: CalendarMonthProps) {
-  const weeks = buildMonthMatrix(year, month);
+  const weeks = useMemo(() => buildMonthMatrix(year, month), [year, month]);
 
   return (
     <section className="rounded-2xl border border-border/60 bg-card/30 p-3 pitch-grid sm:p-4">

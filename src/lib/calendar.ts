@@ -77,8 +77,8 @@ const PLACEHOLDER_RULES: { pattern: RegExp; replace: string }[] = [
 
 export function formatSlotLabel(label: string): string {
   for (const rule of PLACEHOLDER_RULES) {
-    if (rule.pattern.test(label))
-      return label.replace(rule.pattern, rule.replace);
+    const translated = label.replace(rule.pattern, rule.replace);
+    if (translated !== label) return translated;
   }
   return label;
 }

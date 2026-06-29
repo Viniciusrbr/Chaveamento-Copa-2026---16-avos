@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
 
-type CalendarLiveDotProps = {
+type LiveDotProps = {
   className?: string;
 };
 
-export function CalendarLiveDot({ className }: CalendarLiveDotProps) {
+export function LiveDot({ className }: LiveDotProps) {
   return (
     <span className={cn("relative flex size-1.5", className)}>
       <span className="absolute inline-flex size-full animate-ping rounded-full bg-live opacity-75" />

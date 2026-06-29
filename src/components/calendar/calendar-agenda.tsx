@@ -1,11 +1,11 @@
 "use client";
 
+import { LiveDot } from "@/components/bracket/live-dot";
 import { MatchCard } from "@/components/bracket/match-card";
 import type { AgendaDay } from "@/lib/calendar";
 import type { Match } from "@/lib/espn/model";
 import { formatDayHeading } from "@/lib/format";
 import { cn } from "@/lib/utils";
-import { CalendarLiveDot } from "./calendar-live-dot";
 
 type CalendarAgendaProps = {
   days: AgendaDay[];
@@ -33,7 +33,7 @@ export function CalendarAgenda({ days, today, onSelect }: CalendarAgendaProps) {
                 {formatDayHeading(day.iso)}
               </h2>
               <span className="flex items-center gap-1.5">
-                {hasLive ? <CalendarLiveDot /> : null}
+                {hasLive ? <LiveDot /> : null}
                 <span className="rounded-full bg-primary/15 px-1.5 py-0.5 font-mono text-[0.6rem] font-semibold text-primary tabular-nums">
                   {day.matches.length}
                 </span>

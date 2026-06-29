@@ -64,11 +64,11 @@ export function MatchDetailDialog({
                 </div>
               ) : data ? (
                 <Tabs defaultValue="lineups">
-                  <TabsList className="w-full">
+                  <TabsList className="w-full justify-start overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     <TabsTrigger value="lineups">Escalações</TabsTrigger>
                     <TabsTrigger value="timeline">Lances</TabsTrigger>
-                    <TabsTrigger value="info">Ficha</TabsTrigger>
-                    <TabsTrigger value="h2h">Retrospecto</TabsTrigger>
+                    <TabsTrigger value="info">Detalhes</TabsTrigger>
+                    <TabsTrigger value="h2h">Histórico</TabsTrigger>
                   </TabsList>
                   <TabsContent value="lineups" className="pt-4">
                     <LineupList lineups={data.lineups} />

@@ -1,5 +1,7 @@
+import { History } from "lucide-react";
 import type { H2HGame } from "@/lib/espn/summary-model";
 import { formatMatchDate } from "@/lib/format";
+import { EmptyState } from "./empty-state";
 
 type MatchH2HProps = {
   games: H2HGame[];
@@ -8,9 +10,11 @@ type MatchH2HProps = {
 export function MatchH2H({ games }: MatchH2HProps) {
   if (games.length === 0) {
     return (
-      <p className="py-8 text-center text-sm text-muted-foreground">
-        Sem confrontos diretos registrados.
-      </p>
+      <EmptyState
+        icon={<History className="size-6" />}
+        title="Sem confrontos diretos"
+        hint="As seleções não têm partidas anteriores registradas entre si."
+      />
     );
   }
 

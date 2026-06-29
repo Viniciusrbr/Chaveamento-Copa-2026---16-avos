@@ -1,6 +1,7 @@
 import { Goal } from "lucide-react";
 import type { TimelineEvent } from "@/lib/espn/summary-model";
 import { cn } from "@/lib/utils";
+import { EmptyState } from "./empty-state";
 
 type MatchTimelineProps = {
   events: TimelineEvent[];
@@ -9,9 +10,11 @@ type MatchTimelineProps = {
 export function MatchTimeline({ events }: MatchTimelineProps) {
   if (events.length === 0) {
     return (
-      <p className="py-8 text-center text-sm text-muted-foreground">
-        Sem lances registrados ainda.
-      </p>
+      <EmptyState
+        icon={<Goal className="size-6" />}
+        title="Sem lances registrados"
+        hint="Os principais lances aparecem aqui assim que a partida começa."
+      />
     );
   }
 

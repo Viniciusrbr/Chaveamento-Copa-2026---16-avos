@@ -1,6 +1,7 @@
 import { Flag, MapPin, Users } from "lucide-react";
 import type { MatchInfo as MatchInfoData } from "@/lib/espn/summary-model";
 import { formatNumber } from "@/lib/format";
+import { EmptyState } from "./empty-state";
 
 type MatchInfoProps = {
   info: MatchInfoData;
@@ -60,9 +61,11 @@ export function MatchInfo({ info }: MatchInfoProps) {
         />
       ) : null}
       {!venue && !info.attendance && !referee ? (
-        <p className="py-8 text-center text-sm text-muted-foreground">
-          Ficha técnica indisponível.
-        </p>
+        <EmptyState
+          icon={<MapPin className="size-6" />}
+          title="Detalhes da partida indisponíveis"
+          hint="Estádio, público e arbitragem aparecem aqui quando confirmados."
+        />
       ) : null}
     </div>
   );

@@ -1,6 +1,7 @@
-import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Users } from "lucide-react";
 import type { LineupPlayer, TeamLineup } from "@/lib/espn/summary-model";
 import { cn } from "@/lib/utils";
+import { EmptyState } from "./empty-state";
 
 type LineupListProps = {
   lineups: TeamLineup[];
@@ -67,11 +68,17 @@ function TeamLineupColumn({ lineup }: { lineup: TeamLineup }) {
 }
 
 export function LineupList({ lineups }: LineupListProps) {
-  if (lineups.length === 0) {
+  const hasPlayers = lineups.some(
+    (lineup) => lineup.starters.length > 0 || lineup.bench.length > 0,
+  );
+
+  if (!hasPlayers) {
     return (
-      <p className="py-8 text-center text-sm text-muted-foreground">
-        Escalações ainda não divulgadas.
-      </p>
+      <EmptyState
+        icon={<Users className="size-6" />}
+        title="Escalações ainda não divulgadas"
+        hint="Os técnicos costumam confirmar os titulares cerca de uma hora antes do apito inicial."
+      />
     );
   }
 

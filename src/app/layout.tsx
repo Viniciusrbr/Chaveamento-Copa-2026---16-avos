@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Inter, Saira_Condensed } from "next/font/google";
 import { siteConfig } from "@/lib/site";
@@ -84,6 +85,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );

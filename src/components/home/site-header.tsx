@@ -10,12 +10,16 @@ export function SiteHeader() {
             Copa do Mundo FIFA 2026 · EUA · Canadá · México
           </p>
           <h1 className="font-display text-4xl font-bold tracking-tight uppercase sm:text-5xl">
-            O caminho até a taça
+            Chaveamento da Copa do Mundo 2026
           </h1>
+          <p className="font-display text-lg font-semibold tracking-tight text-primary uppercase">
+            O caminho até a taça
+          </p>
           <p className="max-w-xl text-sm text-muted-foreground">
-            Acompanhe o mata-mata em tempo real: 32 confrontos, seis fases e a
-            trajetória de cada seleção rumo à final. Toque em qualquer jogo para
-            ver escalações, lances e a ficha completa.
+            Acompanhe o mata-mata em tempo real — dos 16-avos à final: 32
+            confrontos, seis fases e a trajetória de cada seleção rumo ao
+            título. Toque em qualquer jogo para ver escalações, lances e a ficha
+            completa.
           </p>
         </div>
       </div>

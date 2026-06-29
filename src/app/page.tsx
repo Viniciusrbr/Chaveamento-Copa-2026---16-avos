@@ -1,6 +1,7 @@
 import { LiveBracket } from "@/components/bracket/live-bracket";
 import { BracketError } from "@/components/home/bracket-error";
 import { SiteHeader } from "@/components/home/site-header";
+import { StructuredData } from "@/components/home/structured-data";
 import { getScoreboard } from "@/lib/espn/client";
 import { normalizeScoreboard } from "@/lib/espn/normalize";
 
@@ -27,6 +28,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-1 flex-col">
+      <StructuredData />
       <SiteHeader />
       <main className="mx-auto w-full max-w-[110rem] min-w-0 flex-1 overflow-x-hidden px-4 py-6 sm:px-6">
         {bracket ? (
